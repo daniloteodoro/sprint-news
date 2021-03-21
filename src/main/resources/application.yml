@@ -1,0 +1,43 @@
+local:
+  server:
+    port: ${PORT:8080}
+
+spring.jpa.hibernate.ddl-auto: none
+spring.datasource.url: ${JDBC_DATABASE_URL:jdbc:postgresql://${application.database.host.external}:${application.database.port}/${application.database.database}}
+spring.datasource.username: ${application.database.username}
+spring.datasource.password: ${application.database.password}
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+
+application.database.host.internal: db
+application.database.host.external: ${JDBC_DATABASE_URL:127.0.0.1}
+application.database.port: 5432
+application.database.database: sprintnews
+application.database.username: ${JDBC_DATABASE_USERNAME:sprintnews}
+application.database.password: ${JDBC_DATABASE_PASSWORD:sprintnews}
+
+#logging.level.org.hibernate.SQL: TRACE
+#logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+addon:
+  key: sprintnews-test
+#  base-url: https://sprintnews.herokuapp.com
+  base-url: https://e611caba7263.ngrok.io
+  production: true
+
+logging.level.com.atlassian.connect.spring: DEBUG
+
+atlassian:
+  connect:
+    jwt-expiration-time: 3000
+    self-authentication-expiration-time: 3000
+    allow-reinstall-missing-host: true
+    debug-all-js: false
+
+server:
+  compression:
+    enabled: true
+    min-response-size: 1024 # Compress the response only if the response size is at least 1KB
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+  error:
+    include-message: always
