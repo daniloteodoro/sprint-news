@@ -1,0 +1,58 @@
+{
+  "key": "${addon.key}",
+  "baseUrl": "${addon.base-url}",
+  "name": "Sprint News",
+  "description": "Communicate sprint goals and benefits to each stakeholder. Share requests users have made and were translated into stories by the PO. Share as PDF. Print and distribute. Without wasting your time.",
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed",
+    "uninstalled": "/uninstalled"
+  },
+  "enableLicensing": false,
+  "scopes": ["READ", "ACT_AS_USER"],
+  "modules": {
+    "webItems": [
+      {
+        "location": "jira.software.backlog.tools",
+        "weight": 200,
+        "styleClasses": [
+          "webitem",
+          "system-present-webitem"
+        ],
+        "context": "page",
+        "target": {
+          "type": "dialogmodule",
+          "options": {
+            "key": "dialog-module-key"
+          }
+        },
+        "tooltip": {
+          "value": "Generate a newspaper for this sprint"
+        },
+        "icon": {
+          "width": 16,
+          "height": 16,
+          "url": "/images/history.png"
+        },
+        "name": {
+          "value": "Get newspaper"
+        },
+        "key": "web-item-example"
+      }
+    ],
+    "dialogs": [
+      {
+        "url": "/idx?board-id={board.id}",
+        "options": {
+          "height": "620px",
+          "width": "680px",
+          "chrome": false,
+          "closeOnEscape": false
+        },
+        "key": "dialog-module-key"
+      }
+    ]
+  }
+}

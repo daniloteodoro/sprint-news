@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.4.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SprintNewsHome" pageWidth="595" pageHeight="842" columnWidth="555" columnSpacing="20" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2f6e4db4-9f8f-4ffe-9759-6e1fd142f492">
+	<property name="template.type" value="columnar"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SprintNewsDS"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<style name="Title" forecolor="#000000" fontName="FreeSans" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#666666" fontName="FreeSans" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="FreeSans" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="FreeSans"/>
+	<style name="Row" mode="Transparent" fontName="FreeSans" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="Dataset1" uuid="eec300bd-f73e-46a6-b342-b4f899acaca5">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="newspaper"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="project" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="city_date" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="_THIS" class="com.sprintnews.domain.model.SprintNewspaper">
+		<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+	</field>
+	<title>
+		<band height="78" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement style="Column header" x="0" y="2" width="555" height="50" uuid="98628de6-dd5e-4389-a35f-d466c4c21700"/>
+				<imageExpression><![CDATA["/img/sprint_news_title.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="20" y="12" width="120" height="38" uuid="12c54e91-6f22-4460-95b4-c35a2090a3d2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["by team " + $F{_THIS}.getTeamName() + "\nPO: " + $F{_THIS}.getProductOwnerName()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="20" height="57" forecolor="#969696" uuid="76c76268-8984-4050-9866-d0fa0f78dab4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="48"/>
+				</textElement>
+				<text><![CDATA[[]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="56" width="552" height="1" uuid="1d2409c9-40bf-44b9-8d53-29f5feac1109"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="60" width="280" height="15" uuid="cb4b100a-d11a-4bf8-b7bf-8e80d4ff8cf4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{_THIS}.getProjectName().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="60" width="263" height="15" uuid="4208eae1-bbad-4daa-a35d-40fd609e3974">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{_THIS}.getCityAndDate().toUpperCase()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="75" width="552" height="1" uuid="fd137d24-7b37-4d1d-b70e-a3e51c117033">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="30">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="30" uuid="f00a85e2-5230-42aa-8eed-9f0e370a9275">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="project">
+					<subreportParameterExpression><![CDATA[$P{project}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="city_date">
+					<subreportParameterExpression><![CDATA[$P{city_date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource( java.util.Collections.singletonList($F{_THIS}) )]]></dataSourceExpression>
+				<subreportExpression><![CDATA["SprintNewsColumnContent.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="10">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="0" y="0" width="475" height="10" uuid="aba9b628-4cb8-4dbd-818c-3fe712dfa8b7">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[¹ https://www.atlassian.com/agile/scrum/sprints  ² https://www.atlassian.com/agile/product-management/roadmaps  ³ https://www.atlassian.com/agile/project-management/user-stories]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="481" y="0" width="50" height="10" uuid="cbe47d63-b580-474d-b38a-0225608b6788">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " / "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="534" y="0" width="20" height="10" uuid="1a214a7a-bbac-42d2-bbde-2ed0c356f371">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

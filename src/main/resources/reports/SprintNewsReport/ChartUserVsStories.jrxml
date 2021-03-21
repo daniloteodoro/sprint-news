@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.4.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SprintDateInfo" pageWidth="175" pageHeight="200" columnWidth="175" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f35e7aa4-e16c-4640-8c6d-9bc4176fccee">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SprintNewsDS"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="_THIS" class="com.sprintnews.domain.model.UserWithStoryCount">
+		<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+	</field>
+	<title>
+		<band height="200">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<pieChart>
+				<chart isShowLegend="true" evaluationTime="Report">
+					<reportElement x="0" y="0" width="170" height="170" uuid="5de7bf11-125f-4906-b4b9-821fa60fb506">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					</reportElement>
+					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+						<topPen lineWidth="0.0"/>
+					</box>
+					<chartTitle position="Top">
+						<font size="8" isBold="true"/>
+						<titleExpression><![CDATA["Stories per Stakeholder"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend position="Bottom">
+						<font size="5"/>
+					</chartLegend>
+					<hyperlinkTooltipExpression><![CDATA[$F{_THIS}.getStoryCount().toString()]]></hyperlinkTooltipExpression>
+				</chart>
+				<pieDataset maxCount="4" minPercentage="10.0">
+					<dataset resetType="Report"/>
+					<keyExpression><![CDATA[$F{_THIS}.getUser()]]></keyExpression>
+					<valueExpression><![CDATA[$F{_THIS}.getStoryCount()]]></valueExpression>
+					<labelExpression><![CDATA[$F{_THIS}.getStoryCount().toString()]]></labelExpression>
+					<otherKeyExpression><![CDATA["Others"]]></otherKeyExpression>
+					<otherLabelExpression><![CDATA["Others"]]></otherLabelExpression>
+				</pieDataset>
+				<piePlot isShowLabels="true">
+					<plot>
+						<seriesColor seriesOrder="0" color="#2E3192"/>
+						<seriesColor seriesOrder="1" color="#3F86DA"/>
+						<seriesColor seriesOrder="2" color="#AAB933"/>
+						<seriesColor seriesOrder="3" color="#20D620"/>
+						<seriesColor seriesOrder="4" color="#940EED"/>
+					</plot>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</title>
+</jasperReport>

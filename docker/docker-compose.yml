@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:11
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: sprintnews
+      POSTGRES_USER: sprintnews
+      POSTGRES_PASSWORD: sprintnews
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:

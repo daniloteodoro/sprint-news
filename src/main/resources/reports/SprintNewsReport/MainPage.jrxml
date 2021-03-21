@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.4.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Test1" pageWidth="553" pageHeight="700" columnWidth="553" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4a2fc5b3-3c66-42a2-b6ec-ad6f0f26d021">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="_THIS" class="com.sprintnews.domain.model.SprintNewspaper">
+		<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+	</field>
+	<title>
+		<band height="690">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement x="150" y="220" width="253" height="60" uuid="7c38b5a9-ceaa-422d-aab8-f45fce50714d">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[About Sprints: A sprint is a short, time-boxed period when a scrum team works to complete a set amount of work. Sprints help teams follow the agile principle of "delivering working software frequently," as well as live the agile value of "responding to change over following a plan." ¹]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="418" y="203" width="133" height="30" uuid="72cbec43-18c0-46c9-87d4-e130754da265">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Serif" size="9"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="15" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{_THIS}.getInfoOnPastSprints()]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement positionType="Float" x="522" y="169" width="30" height="30" uuid="2f34383b-b7d2-4435-be34-135bb3d910e4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA["/img/history.png"]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement x="418" y="3" width="130" height="150" uuid="11748763-2196-4941-9c88-dc81a7c22a0f">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource( $F{_THIS}.getRequests() )]]></dataSourceExpression>
+				<subreportExpression><![CDATA["RequestsFromUsers.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport overflowType="NoStretch">
+				<reportElement x="150" y="290" width="253" height="385" uuid="f700efa4-7f7c-4d5a-ace1-7967fec52d58">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource( $F{_THIS}.getRoadmaps() )]]></dataSourceExpression>
+				<subreportExpression><![CDATA["SprintRoadmap.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport overflowType="NoStretch">
+				<reportElement x="150" y="3" width="253" height="205" uuid="093a1a68-f8e6-4c7a-8ca1-49fe43a28014">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource( java.util.Collections.singletonList($F{_THIS}.getMainImage()) )]]></dataSourceExpression>
+				<subreportExpression><![CDATA["MainImage.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="1" y="3" width="133" height="27" uuid="142f416b-a4f1-41cf-a4df-47091ceb4952">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Serif" size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="15" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Main Goal of sprint " + $F{_THIS}.getSprintName() + " is \"" + $F{_THIS}.getSprintGoal() + "\""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="1" y="40" width="133" height="40" uuid="f44ed63c-cfe3-43f1-a1bd-bc08aef8d409">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="Serif" size="9"/>
+					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="15" tabStopWidth="40"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{_THIS}.getSprintBenefits()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="142" y="5" width="1" height="670" forecolor="#FFFFFF" uuid="3ff4d4fd-cbac-4dba-88e3-1a2f43eed9f6">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="410" y="5" width="1" height="670" forecolor="#FFFFFF" uuid="156ce883-ff52-4ce1-b248-d0f4d54521ac">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="418" y="168" width="107" height="33" uuid="0e87276d-0a28-4121-b0e7-9c53a2b92829">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[What happened before?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="680" width="400" height="8" uuid="b27a82da-60be-4861-9c61-ddcf06f0fe91">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[¹ https://www.atlassian.com/agile/scrum/sprints   ² https://www.atlassian.com/agile/product-management/roadmaps]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>
