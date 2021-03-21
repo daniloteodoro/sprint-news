@@ -8,7 +8,7 @@ export default (props) => (
         isOpen={props.errorCode && props.errorCode === 409}
     >
         <Fragment>
-            Stories don't follow the User Story template. See the <a href="https://sprint-news.com/" target="_blank" rel="noopener noreferrer">FAQ</a>.
+            Stories don't follow the User Story template. See the <a href="https://github.com/daniloteodoro/sprint-news/wiki" target="_blank" rel="noopener noreferrer">FAQ</a>.
         </Fragment>
     </Banner>
 );

@@ -1,5 +1,5 @@
 ## SprintNews Jira add-on
-A plugin to generate report with content tailored for stakeholders, with the goal of communicating the development of the product and managing expectations.
+A plugin to generate a report with content tailored for stakeholders, with the goal of communicating the benefits stakeholders will get and managing their expectations on the product development.
 It highlights the stakeholders addressed in the selected sprint, and the value they will get after stories 
 get implemented. Up to five roadmaps are summarized, as well as previous sprints.
 
