@@ -20,10 +20,9 @@ application.database.password: ${JDBC_DATABASE_PASSWORD:sprintnews}
 #logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 addon:
-  key: sprintnews-test
-#  base-url: https://sprintnews.herokuapp.com
-  base-url: https://e611caba7263.ngrok.io
-  production: true
+  key: sprintnews
+  base-url: https://sprintnews.herokuapp.com
+#  base-url: https://e611caba7263.ngrok.io
 
 logging.level.com.atlassian.connect.spring: DEBUG
 
