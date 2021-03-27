@@ -48,7 +48,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdjective() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
 
         // green, adjective (JJ)
         StructuredUserStory sus = createWithBenefit("green becomes the main color");
@@ -59,7 +59,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdjectiveComparative() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
 
         // greener, adjective comparative (JJR)
         StructuredUserStory sus = createWithBenefit("greener products become our main income");
@@ -70,7 +70,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdjectiveSuperlative() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
 
         // most, adjective superlative (JJS)
         StructuredUserStory sus = createWithBenefit("most of our income comes from green products");
@@ -81,7 +81,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdverb() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
 
         // frequently, adverb (RB)
         StructuredUserStory sus = createWithBenefit("almost all the time I find what I want quickly");
@@ -92,7 +92,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdverbComparative() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
 
         // faster, adverb comparative (RBR)
         StructuredUserStory sus = createWithBenefit("more effectively I am");
@@ -106,7 +106,7 @@ public class BenefitGeneratorTest {
     // Testing a second story with the same user.
     @Test
     public void generateCorrectTextGiven2StoriesForTheSameUser() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
 
         String rewrittenSentence = benefitGenerator.generate(DEFAULT_USER,
                 Arrays.asList(createWithBenefit("a product never runs out of stock"), createWithBenefit("I speed up my work")));

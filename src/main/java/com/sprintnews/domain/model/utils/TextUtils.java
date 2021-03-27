@@ -51,7 +51,7 @@ public class TextUtils {
     public static <T> T getNextRandomItemFrom(List<T> list) {
         if (list == null || list.isEmpty())
             return null;
-        return list.get(randomizer.nextInt(list.size() - 1));
+        return list.get(randomizer.nextInt(list.size()));
     }
 
     public static String addDoubleQuotes(String original) {

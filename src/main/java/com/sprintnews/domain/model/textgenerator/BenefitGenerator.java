@@ -15,6 +15,7 @@ import org.jeasy.rules.core.DefaultRulesEngine;
 import org.jeasy.rules.core.RuleBuilder;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -35,11 +36,13 @@ public class BenefitGenerator {
     private final SimpleTokenizer tokenizer;
     private final DictionaryDetokenizer englishDetokenizer;
     private final POSTaggerME posTagger;
+    private final List<String> connectingSentences;
 
-    public BenefitGenerator(POSModel model, DetokenizationDictionary detokenizerDictionary) {
+    public BenefitGenerator(POSModel model, DetokenizationDictionary detokenizerDictionary, List<String> connectingSentences) {
         this.tokenizer = SimpleTokenizer.INSTANCE;
         this.englishDetokenizer = new DictionaryDetokenizer(detokenizerDictionary);
         this.posTagger = new POSTaggerME(model);
+        this.connectingSentences = connectingSentences != null ? connectingSentences : Collections.singletonList(" can be sure that ");
 
         Rule connectSentenceRule = new RuleBuilder()
                 .name("Connect Sentence Rule")
@@ -54,7 +57,7 @@ public class BenefitGenerator {
                 })
                 .then(facts -> {
                     Boolean isFirstStory = facts.get(FACT_ISFIRSTSTORY);
-                    String sentence = isFirstStory ? " can be sure that ".concat(facts.get(FACT_SENTENCE)) : " that ".concat(facts.get(FACT_SENTENCE));
+                    String sentence = isFirstStory ? TextUtils.getNextRandomItemFrom(connectingSentences).concat(facts.get(FACT_SENTENCE)) : " that ".concat(facts.get(FACT_SENTENCE));
 
                     String[] tokens = tokenizer.tokenize(sentence);
                     String[] tags = posTagger.tag(tokens);
