@@ -52,6 +52,10 @@ public enum PartOfSpeechTag {
         return this == VB;
     }
 
+    public boolean isTo() {
+        return this == TO;
+    }
+
     public String getTagDescription() {
         return tagDescription;
     }

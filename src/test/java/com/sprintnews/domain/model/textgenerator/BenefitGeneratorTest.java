@@ -103,16 +103,15 @@ public class BenefitGeneratorTest {
 
     // TODO: Test the other grammar classes
 
-    // TODO: Test with more than 1 story
     // Testing a second story with the same user.
     @Test
     public void generateCorrectTextGiven2StoriesForTheSameUser() {
         BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict);
 
-        String rewrittenSentence = benefitGenerator.generate("Buyer",
+        String rewrittenSentence = benefitGenerator.generate(DEFAULT_USER,
                 Arrays.asList(createWithBenefit("a product never runs out of stock"), createWithBenefit("I speed up my work")));
 
-        String expected = "Buyer can be sure that a product never runs out of stock with story key-title and that they speed up their work with story key-title.";
+        String expected = "User can be sure that a product never runs out of stock with story key-title and that they speed up their work with story key-title.";
         assertThat(rewrittenSentence, is(equalTo(expected)));
     }
 

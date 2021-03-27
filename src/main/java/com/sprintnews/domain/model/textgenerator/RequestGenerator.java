@@ -17,6 +17,7 @@ import org.jeasy.rules.core.RuleBuilder;
 import static com.sprintnews.domain.model.utils.TextUtils.isBlank;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class RequestGenerator {
@@ -25,6 +26,7 @@ public class RequestGenerator {
     private static final String FACT_TAG = "tags";
     private static final String FACT_TOKEN = "tokens";
     private static final String FACT_SENTENCE = "sentence";
+    private static final String FACT_SENTENCE_NR = "sentenceNumber";
 
     private final Rules rulesForRequests;
     private final RulesEngine engine;
@@ -97,23 +99,29 @@ public class RequestGenerator {
                 })
                 .build();
 
-        Rule addToBeforeAVerbRule = new RuleBuilder()
-                .name("Add 'to' Before A Verb Rule")
+        Rule removeToAfterFirstPhraseRule = new RuleBuilder()
+                .name("Remove 'to' After the First Phrase Rule")
                 .when(facts -> {
+                    Integer sentenceNr = facts.get(FACT_SENTENCE_NR);
+                    if (sentenceNr <= 1)
+                        return false;
+
                     String[] tags = facts.get(FACT_TAG);
                     if (tags.length == 0)
                         return false;
 
                     return PartOfSpeechTag.parse(tags[0])
-                            .filter(PartOfSpeechTag::isVerbBaseForm)
+                            .filter(PartOfSpeechTag::isTo)
                             .isPresent();
                 })
                 .then(facts -> {
-                    String sentence = "to ".concat(facts.get(FACT_SENTENCE));
+                    String[] tokens = facts.get(FACT_TOKEN);
+                    String[] tags = facts.get(FACT_TAG);
 
-                    String[] tokens = tokenizer.tokenize(sentence);
-                    String[] tags = posTagger.tag(tokens);
+                    tags = Arrays.copyOfRange(tags, 1, tags.length);
+                    tokens = Arrays.copyOfRange(tokens, 1, tokens.length);
 
+                    String sentence = this.englishDetokenizer.detokenize(tokens, null);
                     // Update sentence and tags with token changes
                     facts.put(FACT_TAG, tags);
                     facts.put(FACT_TOKEN, tokens);
@@ -122,7 +130,7 @@ public class RequestGenerator {
                 .build();
 
         this.rulesForRequests = new Rules();
-        this.rulesForRequests.register(addToBeforeAVerbRule, changeSentenceTo3rdPersonRule, removePeriod);
+        this.rulesForRequests.register(removeToAfterFirstPhraseRule, changeSentenceTo3rdPersonRule, removePeriod);
 
         this.engine = new DefaultRulesEngine();
     }
@@ -132,6 +140,7 @@ public class RequestGenerator {
             return "";
 
         boolean singleStory = stories.size() == 1;
+        AtomicInteger sentenceNr = new AtomicInteger(0);
 
         List<String> sentences = stories.stream()
                 .map(story -> {
@@ -149,6 +158,7 @@ public class RequestGenerator {
                     facts.put(FACT_TAG, tags);
                     facts.put(FACT_TOKEN, tokens);
                     facts.put(FACT_SENTENCE, sentence);
+                    facts.put(FACT_SENTENCE_NR, sentenceNr.incrementAndGet());
 
                     engine.fire(rulesForRequests, facts);
 
