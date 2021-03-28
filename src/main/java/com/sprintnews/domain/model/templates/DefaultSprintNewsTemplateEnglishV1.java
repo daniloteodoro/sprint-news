@@ -1,6 +1,5 @@
 package com.sprintnews.domain.model.templates;
 
-import com.sprintnews.domain.model.NewspaperInput;
 import com.sprintnews.domain.model.*;
 import com.sprintnews.domain.model.exception.CannotGenerateReport;
 import com.sprintnews.domain.model.exception.UserStoriesAreInvalid;
@@ -146,7 +145,8 @@ public class DefaultSprintNewsTemplateEnglishV1 {
                 " will "
         );
 
-        BenefitGenerator benefitGenerator = new BenefitGenerator(this.posModel, this.detokenizerDict);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(this.posModel, this.detokenizerDict,
+                Arrays.asList(" can be sure that ", " will have the benefit that "));
 
         return userStories.entrySet().stream()
                 .map(userWithStories -> benefitGenerator.generate(userWithStories.getKey(), userWithStories.getValue()))
