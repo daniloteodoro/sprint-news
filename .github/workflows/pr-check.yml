@@ -26,7 +26,7 @@ jobs:
       with:
         path: |
           ~/.m2/repository
-          /home/runner/work/sprint-news/sprint-news/target/node/node_modules
+          ~/work/sprint-news/sprint-news/target/node/node_modules
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-npm-${{ hashFiles("**/package.json")
         restore-keys: |
           ${{ runner.os }}-maven-npm-
