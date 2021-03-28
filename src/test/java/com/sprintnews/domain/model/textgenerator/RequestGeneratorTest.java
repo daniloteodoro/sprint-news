@@ -101,9 +101,6 @@ public class RequestGeneratorTest {
         assertThat(rewrittenSentence, is(equalTo("Group of stakeholders User indicated in one story that they want faster to finish their work.")));
     }
 
-    // TODO: Test the other grammar classes
-
-    // TODO: Test with more than 1 story
     @Test
     public void generateCorrectTextGiven2StoriesForTheSameUser() {
         RequestGenerator requestGenerator = new RequestGenerator(posModel, detokenizerDict);
@@ -116,4 +113,5 @@ public class RequestGeneratorTest {
         assertThat(rewrittenSentence, is(equalTo(expected)));
     }
 
+    // TODO: Test the other grammar classes
 }
