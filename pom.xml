@@ -13,7 +13,7 @@
 
 	<organization>
 		<name>Sprint News</name>
-		<url>https://marketplace.atlassian.com/apps/1223324/sprint-news-sprint-report-for-jira?utm_source=github</url>
+		<url>https://marketplace.atlassian.com/apps/1223324/sprint-news-sprint-report-for-jira?hosting=cloud&tab=overview&utm_source=github</url>
 	</organization>
 
 	<parent>

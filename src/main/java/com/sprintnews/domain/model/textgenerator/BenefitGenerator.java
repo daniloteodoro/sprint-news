@@ -38,14 +38,14 @@ public class BenefitGenerator {
     private final POSTaggerME posTagger;
     private final List<String> connectingSentences;
 
-    public BenefitGenerator(POSModel model, DetokenizationDictionary detokenizerDictionary, List<String> connectingSentences) {
+    public BenefitGenerator(POSModel model, DetokenizationDictionary detokenizerDictionary, List<String> connectingSentenceList) {
         this.tokenizer = SimpleTokenizer.INSTANCE;
         this.englishDetokenizer = new DictionaryDetokenizer(detokenizerDictionary);
         this.posTagger = new POSTaggerME(model);
-        this.connectingSentences = connectingSentences != null ? connectingSentences : Collections.singletonList(" can be sure that ");
+        this.connectingSentences = connectingSentenceList != null ? connectingSentenceList : Collections.singletonList(" can be sure that ");
 
         Rule connectSentenceRule = new RuleBuilder()
-                .name("Connect Sentence Rule")
+                .name("Add connecting sentence Rule")
                 .when(facts -> {
                     String[] tags = facts.get(FACT_TAGS);
 
