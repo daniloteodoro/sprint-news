@@ -5,7 +5,7 @@ A plugin to generate a report with content tailored for stakeholders, with the g
 It highlights the stakeholders addressed in the selected sprint, and the value they will get after stories 
 get implemented. Up to five roadmaps are summarized, as well as previous sprints. You can visit the plugin on Jira's Market place [using this link](https://marketplace.atlassian.com/apps/1223324/sprint-news-sprint-report-for-jira?hosting=cloud&tab=overview&utm_source=github)
 
-####Sample report generated using the plugin:
+#### Sample report generated using the plugin:
 ![Sample report generated using the plugin](https://github.com/daniloteodoro/sprint-news/blob/main/docs/sample-newspaper-2021-03-28.png?raw=true)
 
 ## Text generation algorithm
