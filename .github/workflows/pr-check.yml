@@ -20,5 +20,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+        
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.m2/repository
+          /home/runner/work/sprint-news/sprint-news/target/node/node_modules
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-npm-${{ hashFiles("**/package.json")
+        restore-keys: |
+          ${{ runner.os }}-maven-npm-
+        
     - name: Run tests with Maven
       run: mvn -B test --file pom.xml
