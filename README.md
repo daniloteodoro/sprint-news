@@ -1,3 +1,5 @@
+[![Build Status](https://github.com/daniloteodoro/sprint-news/actions/workflows/pr-check.yml/badge.svg)](https://github.com/daniloteodoro/sprint-news/actions)
+
 ## SprintNews Jira add-on
 A plugin to generate a report with content tailored for stakeholders, with the goal of communicating the benefits stakeholders will get and managing their expectations on the product development.
 It highlights the stakeholders addressed in the selected sprint, and the value they will get after stories 
@@ -7,10 +9,10 @@ get implemented. Up to five roadmaps are summarized, as well as previous sprints
 ![Sample report generated using the plugin](https://github.com/daniloteodoro/sprint-news/blob/main/docs/sample-newspaper-2021-03-28.png?raw=true)
 
 ## Text generation algorithm
-The text generation tries to adapt the request and benefit (value) inside the user story into a text with the intention of describing requests and benefits for a given user.
-To accomplish this there is an issue of linking these 2 parts: the text of the story and the text describing the request or benefit. 
-Since the request / benefit text is already limited to 2 or 3 sentences, the next step was to limit the "variations" of the text extracted from the stories by analyzing their part of speech (PoS). 
-This task was done using the OpenNLP project. The last part was to build the block of text that will be used by the final report, which includes adding, updating and removing part of the text (tokens).
+The text generation algorithm tries to adapt the request and benefit inside the user story into a text with the intention of describing requests and benefits for a given user.
+To accomplish this there is an issue of linking these 2 parts: the text of the story and the text describing the request or benefit for a given user. 
+Since the request / benefit text is already limited to 2 or 3 sentences, the solution was to limit the "variations" of the text extracted from the stories by analyzing their part of speech (PoS). 
+This task was done using Apache OpenNLP. The last part was to build the block of text that will be used by the final report, which includes adding, updating and removing part of the text (tokens).
 To make these changes more maintainable, each individual operation was implemented as a discrete rule.
 
 ![Text generation algorithm](https://github.com/daniloteodoro/sprint-news/blob/main/docs/generate-text-bpm.png?raw=true)
