@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -23,6 +24,7 @@ public class BenefitGeneratorTest {
 
     private static final POSModel posModel = getPosModel();
     private static final DetokenizationDictionary detokenizerDict = getDetokenizerDictionary();
+    private static final List<String> connectingPhrase = Collections.singletonList(" can be sure that ");
 
     private static POSModel getPosModel() {
         try (InputStream is = RequestGeneratorTest.class.getResourceAsStream("/models/en-pos-maxent.bin")) {
@@ -48,7 +50,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdjective() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, connectingPhrase);
 
         // green, adjective (JJ)
         StructuredUserStory sus = createWithBenefit("green becomes the main color");
@@ -59,7 +61,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdjectiveComparative() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, connectingPhrase);
 
         // greener, adjective comparative (JJR)
         StructuredUserStory sus = createWithBenefit("greener products become our main income");
@@ -70,7 +72,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdjectiveSuperlative() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, connectingPhrase);
 
         // most, adjective superlative (JJS)
         StructuredUserStory sus = createWithBenefit("most of our income comes from green products");
@@ -81,7 +83,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdverb() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, connectingPhrase);
 
         // frequently, adverb (RB)
         StructuredUserStory sus = createWithBenefit("almost all the time I find what I want quickly");
@@ -92,7 +94,7 @@ public class BenefitGeneratorTest {
 
     @Test
     public void generateCorrectTextGivenABenefitStartingWithAdverbComparative() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, connectingPhrase);
 
         // faster, adverb comparative (RBR)
         StructuredUserStory sus = createWithBenefit("more effectively I am");
@@ -101,12 +103,10 @@ public class BenefitGeneratorTest {
         assertThat(rewrittenSentence, is(equalTo("Yoda can be sure that more effectively they are with story key-title.")));
     }
 
-    // TODO: Test the other grammar classes
-
-    // Testing a second story with the same user.
     @Test
     public void generateCorrectTextGiven2StoriesForTheSameUser() {
-        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, null);
+        // Testing a second story with the same user.
+        BenefitGenerator benefitGenerator = new BenefitGenerator(posModel, detokenizerDict, connectingPhrase);
 
         String rewrittenSentence = benefitGenerator.generate(DEFAULT_USER,
                 Arrays.asList(createWithBenefit("a product never runs out of stock"), createWithBenefit("I speed up my work")));
@@ -115,4 +115,5 @@ public class BenefitGeneratorTest {
         assertThat(rewrittenSentence, is(equalTo(expected)));
     }
 
+    // TODO: Test the other grammar classes
 }
