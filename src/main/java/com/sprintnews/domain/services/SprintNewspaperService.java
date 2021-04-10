@@ -146,8 +146,8 @@ public class SprintNewspaperService {
 
     private SimpleStoryList getStoryList(OAuth2RestTemplate clientRestTemplate, NewspaperInput input) {
         try {
-            // Get only issues of type STORY from the sprint.
-            String url = String.format("/rest/agile/1.0/sprint/%s/issue?jql=issueType=story", input.getSelectedSprint().getValue());
+            // Get only issues of type STORY from the sprint. Update: issueType can vary per project and raises an error, removing...
+            String url = String.format("/rest/agile/1.0/sprint/%s/issue", input.getSelectedSprint().getValue());
             return clientRestTemplate.getForObject(url, SimpleStoryList.class);
         } catch (Exception e) {
             logger.info("count#newspaper.get_story_list.failure=1");
@@ -210,7 +210,7 @@ public class SprintNewspaperService {
     private Roadmap getRoadmap(OAuth2RestTemplate restTemplate, SimpleStoryList.SimpleStory epic, List<SimpleStoryList.SimpleStory> issues) {
         try {
             // Get a list of children issues that are not done.
-            String url = String.format("/rest/api/2/search?jql=parent=%s and status!=Done&fields=id,key,summary", epic.getId());
+            String url = String.format("/rest/api/2/search?jql=parent=%s and statuscategory!=Done&fields=summary", epic.getId());
             SimpleStoryList children = restTemplate.getForObject(url, SimpleStoryList.class);
 
             if (children == null || children.getIssues().isEmpty())
