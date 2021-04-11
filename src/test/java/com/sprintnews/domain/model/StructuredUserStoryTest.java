@@ -30,7 +30,7 @@ public class StructuredUserStoryTest {
     @Test
     public void givenACorrectUserStoryWithoutBenefit_WhenParsingContent_ThenCorrectRequestIsExtracted() {
         StructuredUserStory sus = StructuredUserStory.parse("key", "title", new String[]{"As a Manager, I want a detailed cost report."});
-        assertThat(sus.getRequest(), is(equalTo("a detailed cost report.")));
+        assertThat(sus.getRequest(), is(equalTo("a detailed cost report")));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class StructuredUserStoryTest {
     @Test
     public void givenACorrectUserStory_WhenParsingContent_ThenCorrectBenefitIsExtracted() {
         StructuredUserStory sus = StructuredUserStory.parse("key", "title", new String[]{"As a Manager, I want a detailed cost report, so that I can plan better."});
-        assertThat(sus.getBenefit(), is(equalTo("I can plan better.")));
+        assertThat(sus.getBenefit(), is(equalTo("I can plan better")));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class StructuredUserStoryTest {
                 "This is a line at the start.",
                 "As a Manager, I want a detailed cost report, so that I can plan better.",
                 "This is a high prio story."});
-        assertThat(sus.getBenefit(), is(equalTo("I can plan better.")));
+        assertThat(sus.getBenefit(), is(equalTo("I can plan better")));
     }
 
     @Test
@@ -62,4 +62,22 @@ public class StructuredUserStoryTest {
         Assertions.assertFalse(sus.isComplete());
     }
 
+    @Test
+    public void givenACorrectUserStoryWithMultipleLineBreaks_WhenParsingContent_ThenCorrectValuesAreExtracted() {
+        StructuredUserStory sus = StructuredUserStory.parse("key", "title", new String[]{"As an Administrator,\n" +
+                "\n" +
+                ",,,i Want to be able to preview financial reports on the app, so that\n" +
+                "\n" +
+                "i can avoid printing too much." +
+                "\n" +
+                "\n"});
+
+        // As a Finance team, i want to be able to preview financial reports on the app, so that i can avoid printing too much.
+        assertThat(sus.getUserGroup(), is(equalTo("Administrator")));
+        assertThat(sus.getRequest(), is(equalTo("to be able to preview financial reports on the app")));
+        assertThat(sus.getBenefit(), is(equalTo("i can avoid printing too much")));
+    }
+
 }
+
+

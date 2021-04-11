@@ -36,7 +36,7 @@ public class DefaultSprintNewsTemplateEnglishV1 {
 
     private SentenceModel generateSentenceModel() {
         try (InputStream is = getClass().getResourceAsStream("/models/en-sent.bin")) {
-            return new SentenceModel(is);
+            return new SentenceModel(Objects.requireNonNull(is));
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failure loading sentence detector model");
@@ -45,7 +45,7 @@ public class DefaultSprintNewsTemplateEnglishV1 {
 
     private POSModel getPosModel() {
         try (InputStream is = getClass().getResourceAsStream("/models/en-pos-maxent.bin")) {
-            return new POSModel(is);
+            return new POSModel(Objects.requireNonNull(is));
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failure loading PoS tagger model");
@@ -146,7 +146,7 @@ public class DefaultSprintNewsTemplateEnglishV1 {
         );
 
         BenefitGenerator benefitGenerator = new BenefitGenerator(this.posModel, this.detokenizerDict,
-                Arrays.asList(" can be sure that ", " will have the benefit that "));
+                Arrays.asList("can be sure that", "will have the benefit that"));
 
         return userStories.entrySet().stream()
                 .map(userWithStories -> benefitGenerator.generate(userWithStories.getKey(), userWithStories.getValue()))
@@ -244,22 +244,12 @@ public class DefaultSprintNewsTemplateEnglishV1 {
     }
 
     private StructuredUserStory parseFromSimpleStory(SimpleStoryList.SimpleStory simpleStory) {
-        final String END_OF_SENTENCE = "\n\n";
-
         if (simpleStory.getFields().getDescription() == null || simpleStory.getFields().getDescription().trim().isEmpty())
             return StructuredUserStory.emptyUserStory(simpleStory.getKey(), simpleStory.getFields().getSummary());
 
         try {
             SentenceDetectorME sdetector = new SentenceDetectorME(sentenceModel);
-            // Clean up sentences containing 2 line breaks
             String[] detectedSentences = sdetector.sentDetect(simpleStory.getFields().getDescription());
-            for (int i = 0; i < detectedSentences.length; i++) {
-                if (detectedSentences[i] == null || detectedSentences[i].isEmpty())
-                    continue;
-                if (detectedSentences[i].contains(END_OF_SENTENCE)) {
-                    detectedSentences[i] = detectedSentences[i].substring(0, detectedSentences[i].indexOf(END_OF_SENTENCE));
-                }
-            }
             return StructuredUserStory.parse(simpleStory.getKey(), simpleStory.getFields().getSummary(), detectedSentences );
         } catch (Exception e) {
             e.printStackTrace();

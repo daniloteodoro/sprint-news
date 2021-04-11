@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -24,11 +25,11 @@ public class BenefitGeneratorTest {
 
     private static final POSModel posModel = getPosModel();
     private static final DetokenizationDictionary detokenizerDict = getDetokenizerDictionary();
-    private static final List<String> connectingPhrase = Collections.singletonList(" can be sure that ");
+    private static final List<String> connectingPhrase = Collections.singletonList("can be sure that");
 
     private static POSModel getPosModel() {
         try (InputStream is = RequestGeneratorTest.class.getResourceAsStream("/models/en-pos-maxent.bin")) {
-            return new POSModel(is);
+            return new POSModel(Objects.requireNonNull(is));
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failure loading PoS tagger model");

@@ -40,7 +40,7 @@ public class AddConnectingPhraseRule {
 
     @Action
     public void addConnectingPhrase(Facts facts, @Fact(FactKeys.FACT_ISFIRSTSTORY) Boolean isFirstStory, @Fact(FactKeys.FACT_SENTENCE) String sentence) {
-        String connectedSentence = isFirstStory ? TextUtils.getNextRandomItemFrom(connectingSentences).concat(sentence) : " that ".concat(sentence);
+        String connectedSentence = isFirstStory ? TextUtils.getNextRandomItemFrom(connectingSentences).concat(" ").concat(sentence) : " that ".concat(sentence);
 
         String[] tokens = tokenizer.tokenize(connectedSentence);
         String[] tags = posTagger.tag(tokens);
