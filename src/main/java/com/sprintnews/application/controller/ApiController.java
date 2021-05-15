@@ -2,6 +2,7 @@ package com.sprintnews.application.controller;
 
 import com.atlassian.connect.spring.AtlassianHostRestClients;
 import com.atlassian.connect.spring.AtlassianHostUser;
+import com.atlassian.connect.spring.ContextJwt;
 import com.sprintnews.domain.model.NewspaperInput;
 import com.sprintnews.domain.model.exception.CannotGenerateReport;
 import com.sprintnews.domain.model.exception.InvalidUserInput;
@@ -24,6 +25,7 @@ import java.util.*;
  * @author daniloteodoro
  */
 
+@ContextJwt
 @CrossOrigin()
 @RestController
 public class ApiController {
