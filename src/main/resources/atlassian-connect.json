@@ -10,6 +10,9 @@
     "installed": "/installed",
     "uninstalled": "/uninstalled"
   },
+  "apiMigrations": {
+    "context-qsh": true
+  },
   "enableLicensing": false,
   "scopes": ["READ", "ACT_AS_USER"],
   "modules": {

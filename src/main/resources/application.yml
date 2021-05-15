@@ -24,12 +24,12 @@ addon:
   base-url: https://sprintnews.herokuapp.com
 #  base-url: https://e611caba7263.ngrok.io
 
-logging.level.com.atlassian.connect.spring: DEBUG
+logging.level.com.atlassian.connect.spring: WARN
 
 atlassian:
   connect:
-    jwt-expiration-time: 3000
-    self-authentication-expiration-time: 3000
+#    jwt-expiration-time: 3000
+#    self-authentication-expiration-time: 3000
     allow-reinstall-missing-host: true
     debug-all-js: false
 
