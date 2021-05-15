@@ -24,7 +24,7 @@ addon:
   base-url: https://sprintnews.herokuapp.com
 #  base-url: https://e611caba7263.ngrok.io
 
-logging.level.com.atlassian.connect.spring: WARN
+logging.level.com.atlassian.connect.spring: DEBUG
 
 atlassian:
   connect:
