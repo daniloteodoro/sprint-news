@@ -1,0 +1,24 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <mirrors>
+        <mirror>
+            <id>third-party-jasper</id>
+            <mirrorOf>external:http:*</mirrorOf>
+            <url>http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/</url>
+        </mirror>
+
+        <mirror>
+            <id>jaspersoft-third-party</id>
+            <mirrorOf>external:http:*</mirrorOf>
+            <url>http://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+        </mirror>
+
+        <mirror>
+            <id>jr-ce-releases</id>
+            <mirrorOf>external:http:*</mirrorOf>
+            <url>http://jaspersoft.jfrog.io/jaspersoft/jr-ce-releases</url>
+        </mirror>
+    </mirrors>
+
+</settings>

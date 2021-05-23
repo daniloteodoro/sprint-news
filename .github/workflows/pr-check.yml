@@ -31,5 +31,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-npm-
 
+    - name: Create settings file for Maven to work well with Jasperreports..
+      run: cp maven/settings.xml ~/.m2/
+
     - name: Run tests with Maven
       run: mvn -B test --file pom.xml
