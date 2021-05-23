@@ -9,7 +9,9 @@ get implemented. Up to five roadmaps are summarized, as well as previous sprints
 ![Sample report generated using the plugin](https://github.com/daniloteodoro/sprint-news/blob/main/docs/sample-newspaper-2021-03-28.png?raw=true)
 
 ## Text generation algorithm
-The text generation algorithm tries to adapt the request and benefit inside the user story into a text describing requests and benefits for a given user. For example, for story *"As a Warehouse Manager, I want to see a calendar containing the loads expected in this week, so that I can plan stock locations and make sure there are enough people to handle them"* the following user benefit text will be generated: *Warehouse Manager can be sure that they can plan stock locations and make sure there are enough people to handle them with story (...)*.
+The text generation algorithm tries to adapt the request and benefit inside the user story into a text describing requests and benefits for a given user. 
+For example, for story *"As a Warehouse Manager, I want to see a calendar containing the loads expected in this week, so that I can plan stock locations and make sure there are enough people to handle them"* 
+the following user benefit text will be generated: *"Warehouse Manager can be sure that they can plan stock locations and make sure there are enough people to handle them with story (...)"*.
 To accomplish this there is an issue of linking these 2 parts: the text of the story and the text describing the request or benefit for a given user. 
 Since the request / benefit text is already limited to 2 or 3 sentences, the solution was to limit the "variations" of the text extracted from the stories by analyzing their part of speech (PoS). 
 This task was done using Apache OpenNLP. The last part was to build the block of text that will be used by the final report, which includes adding, updating and removing part of the text (tokens).
