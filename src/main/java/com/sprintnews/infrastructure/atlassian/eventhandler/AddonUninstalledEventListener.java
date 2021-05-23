@@ -24,7 +24,7 @@ public class AddonUninstalledEventListener implements ApplicationListener<AddonU
     @Override
     public void onApplicationEvent(AddonUninstalledEvent addonUninstalledEvent) {
         try {
-            hostRepository.findFirstByBaseUrlOrderByLastModifiedDateDesc(addonUninstalledEvent.getHost().getBaseUrl())
+            hostRepository.findById(addonUninstalledEvent.getHost().getClientKey())
                     .ifPresent(hostRepository::delete);
         } catch (Exception e) {
             logger.severe("Failure deleting existing host after uninstall: " + e.getMessage());
