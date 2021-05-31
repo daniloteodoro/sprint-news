@@ -31,6 +31,9 @@
 		<jasper.version>6.17.0</jasper.version>
 		<atlassian-connect-spring-boot.version>2.1.5</atlassian-connect-spring-boot.version>
 		<jasper-compiler-plugin.version>2.7</jasper-compiler-plugin.version>
+		<sonar.projectKey>daniloteodoro_sprint-news</sonar.projectKey>
+		<sonar.organization>daniloteodoro</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<repositories>
