@@ -11,7 +11,8 @@
     "uninstalled": "/uninstalled"
   },
   "apiMigrations": {
-    "context-qsh": true
+    "context-qsh": true,
+    "signed-install": true
   },
   "enableLicensing": false,
   "scopes": ["READ", "ACT_AS_USER"],

@@ -20,8 +20,8 @@ To make these changes more maintainable, each individual operation was implement
 ![Text generation algorithm](https://github.com/daniloteodoro/sprint-news/blob/main/docs/generate-text-bpm.png?raw=true)
 
 ### Running the project locally and installing the add-on
-1. Install ngrok and run `ngrok http 8080`
-2. Copy the **https** address from ngrok and update parameter 'base-url' on the resources/application.yml file
+1. Install ngrok and run `ngrok http 8080` (remember that ngrok now requests user signup first)
+2. Copy the **https** address from ngrok and update parameter 'base-url' on the src/main/java/resources/application.yml file
 3. Run `mvn spring-boot:run`
 4. Install the add-on on Jira (menu Apps|Manage Apps, Upload button - first you have to enable Development mode using the Settings link on the same page)
 5. Paste the `https` url you copied from ngrok
